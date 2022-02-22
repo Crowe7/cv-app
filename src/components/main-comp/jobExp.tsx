@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-
+import { v4 as uuidv4 } from 'uuid';
 interface JobInfo {
   Title: string
   Employer: string
@@ -7,6 +7,7 @@ interface JobInfo {
   EndingDate: Date
   Exployed: boolean
   JobInfo: string
+  ID: string
 }
 
 type MyState = {
@@ -22,10 +23,13 @@ export default class jobExp extends Component {
       StartingDate: new Date(),
       EndingDate: new Date(),
       Exployed: false,
-      JobInfo: ''
+      JobInfo: '',
+      ID: uuidv4()
     },
     InfoCount: [],
   }
+
+
   render() {
     return (
       <div>jobExp</div>
