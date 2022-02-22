@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { v4 as uuidv4 } from 'uuid';
+import Button from '@mui/material/Button';
 interface JobInfo {
   Title: string
   Employer: string
@@ -29,10 +30,25 @@ export default class jobExp extends Component {
     InfoCount: [],
   }
 
+  handleClick = () => {
+    this.setState({
+      InfoCount: this.state.InfoCount.concat(this.state.Info),
+      Info: {
+        Title: '',
+        Employer: '',
+        StartingDate: new Date(),
+        EndingDate: new Date(),
+        Exployed: false,
+        JobInfo: '',
+        ID: uuidv4()
+      }
+    });
+    console.log(this.state.InfoCount);
+  }
 
   render() {
     return (
-      <div>jobExp</div>
+      <Button onClick={() => {this.handleClick()}} variant="contained">Add Job</Button>
     )
   }
 }
