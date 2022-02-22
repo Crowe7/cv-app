@@ -3,11 +3,25 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
-export default class Header extends Component {
-  constructor(props:boolean) {
-    super(props);
-    this.state = {
-      checked: false
+
+
+type MyState = {
+  checked?: boolean
+  mode?: string
+}
+
+export default class Header extends Component<MyState> {
+  state: MyState = {
+    checked: true,
+    mode: "Edit"
+  }
+
+  handleChange = (e:React.ChangeEvent<HTMLInputElement>) => { // this is probably very wrong and very bad
+    if(this.state.checked === false) {
+      this.setState({checked: true, mode: "Edit"})
+    }
+    else if(this.state.checked === true) {
+      this.setState({checked: false, mode: "Preview"})
     }
   }
   render() {
@@ -15,7 +29,7 @@ export default class Header extends Component {
       <div>
         <h1>CV application</h1>
         <FormGroup>
-          <FormControlLabel control={<Switch />} label="Label" />
+          <FormControlLabel control={<Switch checked={this.state.checked} onChange={this.handleChange} />} label={`${this.state.mode}`} />
         </FormGroup>
       </div>
     )
