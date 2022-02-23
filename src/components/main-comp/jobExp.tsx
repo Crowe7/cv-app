@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import { v4 as uuidv4 } from 'uuid';
 import Button from '@mui/material/Button';
-interface JobInfo {
+import JobExpBoxes from "./JobExpBoxes";
+export interface JobInfo {
   Title: string
   Employer: string
   StartingDate: Date
@@ -29,6 +30,16 @@ export default class jobExp extends Component {
     },
     InfoCount: [],
   }
+// this is a curried function 
+  handleChange = (ID:string) => (e:any) => {
+    const CurrentInfoCount = this.state.InfoCount.slice();
+    for(let i = 0; i < CurrentInfoCount.length; i++) {
+      if(ID === CurrentInfoCount[i].ID) {
+        CurrentInfoCount[i] = {...CurrentInfoCount[i], [e.target.name]: e.target.value};
+        this.setState({InfoCount: CurrentInfoCount});
+      }
+    }
+  }
 
   handleClick = () => {
     this.setState({
@@ -48,7 +59,10 @@ export default class jobExp extends Component {
 
   render() {
     return (
-      <Button onClick={() => {this.handleClick()}} variant="contained">Add Job</Button>
+      <div>
+        <JobExpBoxes InfoCount={this.state.InfoCount} handleChange={this.handleChange}/>
+        <Button onClick={() => {this.handleClick()}} variant="contained">Add Job</Button>
+      </div>
     )
   }
 }
