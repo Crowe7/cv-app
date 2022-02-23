@@ -35,6 +35,7 @@ export default class jobExp extends Component {
     const CurrentInfoCount = this.state.InfoCount.slice();
     for(let i = 0; i < CurrentInfoCount.length; i++) {
       if(ID === CurrentInfoCount[i].ID) {
+        //these are computed propery names [e.targer.name]
         CurrentInfoCount[i] = {...CurrentInfoCount[i], [e.target.name]: e.target.value};
         this.setState({InfoCount: CurrentInfoCount});
       }
@@ -61,7 +62,7 @@ export default class jobExp extends Component {
     return (
       <div>
         <JobExpBoxes InfoCount={this.state.InfoCount} handleChange={this.handleChange}/>
-        <Button onClick={() => {this.handleClick()}} variant="contained">Add Job</Button>
+        <Button onClick={this.handleClick} variant="contained">Add Job</Button>
       </div>
     )
   }
