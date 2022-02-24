@@ -32,12 +32,22 @@ export default class jobExp extends Component {
   }
 // this is a curried function 
   handleChange = (ID:string) => (e:any) => {
-    const CurrentInfoCount = this.state.InfoCount.slice();
+    const CurrentInfoCount = [...this.state.InfoCount]
     for(let i = 0; i < CurrentInfoCount.length; i++) {
       if(ID === CurrentInfoCount[i].ID) {
         //these are computed propery names [e.targer.name]
         CurrentInfoCount[i] = {...CurrentInfoCount[i], [e.target.name]: e.target.value};
         this.setState({InfoCount: CurrentInfoCount});
+      }
+    }
+  }
+
+  handleDelete = (ID:string) => {
+    const CurrentInfoCount = [...this.state.InfoCount]
+    for(let i = 0; i < CurrentInfoCount.length; i++) {
+      if(ID === CurrentInfoCount[i].ID) {
+        CurrentInfoCount.splice(i, 1);
+        this.setState({InfoCount: CurrentInfoCount})
       }
     }
   }
@@ -61,7 +71,7 @@ export default class jobExp extends Component {
   render() {
     return (
       <div>
-        <JobExpBoxes InfoCount={this.state.InfoCount} handleChange={this.handleChange}/>
+        <JobExpBoxes InfoCount={this.state.InfoCount} handleChange={this.handleChange} handleDelete={this.handleDelete}/>
         <Button onClick={this.handleClick} variant="contained">Add Job</Button>
       </div>
     )

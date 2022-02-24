@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 type MyProps = {
   InfoCount: JobInfo[],
   handleChange?: Function
+  handleDelete?: Function
 }
 
 //this.props.handleChange?.(info.ID) is called optional chaining
