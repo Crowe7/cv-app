@@ -73,7 +73,7 @@ export default class jobExp extends Component {
     return (
       <div>
         <JobExpBoxes InfoCount={this.state.InfoCount} handleChange={this.handleChange} handleDelete={this.handleDelete}/>
-        <Button onClick={this.handleClick} variant="contained">Add Job</Button>
+        <Button sx={{width: "100%"}} onClick={this.handleClick} variant="contained">Add Job</Button>
       </div>
     )
   }
