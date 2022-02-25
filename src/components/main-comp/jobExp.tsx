@@ -6,8 +6,8 @@ import JobExpBoxes from "./JobExpBoxes";
 export interface JobInfo {
   Title: string
   Employer: string
-  StartingDate: Date
-  EndingDate: Date
+  StartingDate: Date|null
+  EndingDate: Date|null
   Exployed: boolean
   JobInfo: string
   ID: string
