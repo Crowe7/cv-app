@@ -25,7 +25,8 @@ export default class JobExpBoxes extends Component<MyProps> {
                               <DeleteIcon />
                             </IconButton>
                           </Box>
-                          <TextField sx={{width: "35%", marginLeft: "25px"}} onChange={handleChange?.(info.ID)} name="Title" id="outlined-basic" label="Title" variant="outlined" />
+                          <TextField sx={{width: "35%", marginLeft: "25px", marginTop: "20px"}} onChange={handleChange?.(info.ID)} name="Title" id="outlined-basic" label="Title" variant="outlined" />
+                          <TextField sx={{width: "35%", marginLeft: "25px", marginTop: "20px"}} onChange={handleChange?.(info.ID)} name="Employer" id="outlined-basic" label="Employer" variant="outlined" />
                     </Box>;
             })
           }
