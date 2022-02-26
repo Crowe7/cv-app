@@ -7,12 +7,19 @@ import Box from '@mui/material/Box';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+/* IDK HOW TO IMPORT BETTER YET */
+
+
 
 type MyProps = {
   InfoCount: JobInfo[],
   handleChange?: Function
   handleDelete?: Function
   handleDateChange?: Function
+  handleEmployedFlip?: any
 }
 
 //this.props.handleChange?.(info.ID) is called optional chaining
@@ -20,7 +27,7 @@ export default class JobExpBoxes extends Component<MyProps> {
 
 //https://stackoverflow.com/questions/37387351/reactjs-warning-setstate-cannot-update-during-an-existing-state-transiti
   render() {
-    const {InfoCount, handleChange, handleDelete, handleDateChange} = this.props
+    const {InfoCount, handleChange, handleDelete, handleDateChange, handleEmployedFlip} = this.props
     return (
       <div>
           {InfoCount.map((info) => {
@@ -45,13 +52,17 @@ export default class JobExpBoxes extends Component<MyProps> {
                               <DatePicker
                                 value={info.EndingDate}
                                 label="Ending Date"
-                                disabled={info.Exployed}
+                                disabled={info.Employed}
                                 onChange={(newValue: Date|null) => {
                                   handleDateChange?.(info.ID, newValue, "EndingDate")
                                 }}
                                 renderInput={(params) => <TextField {...params} />}
                               />
                             </LocalizationProvider>
+
+                            <FormGroup>
+                              <FormControlLabel control={<Switch checked={info.Employed} onChange={handleEmployedFlip(info.ID)} />} label="Employed" />
+                            </FormGroup>
                           </Box>
                     </Box>;
             })

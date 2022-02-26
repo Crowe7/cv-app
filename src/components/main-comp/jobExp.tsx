@@ -8,7 +8,7 @@ export interface JobInfo {
   Employer: string
   StartingDate: Date|null
   EndingDate: Date|null
-  Exployed: boolean
+  Employed: boolean
   JobInfo: string
   ID: string
 }
@@ -25,7 +25,7 @@ export default class jobExp extends Component {
       Employer: '',
       StartingDate: new Date(),
       EndingDate: new Date(),
-      Exployed: false,
+      Employed: false,
       JobInfo: '',
       ID: uuidv4()
     },
@@ -48,6 +48,17 @@ export default class jobExp extends Component {
     for(let i = 0; i < CurrentInfoCount.length; i++) {
       if(ID === CurrentInfoCount[i].ID) {
         CurrentInfoCount[i] = {...CurrentInfoCount[i], [dateName]: newValue};
+        this.setState({InfoCount: CurrentInfoCount});
+      }
+    }
+  }
+
+  handleEmployedFlip = (ID:string) => (e:any) => {
+    const CurrentInfoCount = [...this.state.InfoCount]
+    for(let i = 0; i < CurrentInfoCount.length; i++) {
+      if(ID === CurrentInfoCount[i].ID) {
+        console.log('e')
+        CurrentInfoCount[i] = {...CurrentInfoCount[i], Employed: e.target.checked};
         this.setState({InfoCount: CurrentInfoCount});
       }
     }
@@ -82,7 +93,7 @@ export default class jobExp extends Component {
   render() {
     return (
       <div>
-        <JobExpBoxes InfoCount={this.state.InfoCount} handleChange={this.handleChange} handleDelete={this.handleDelete} handleDateChange={this.handleDateChange}/>
+        <JobExpBoxes InfoCount={this.state.InfoCount} handleChange={this.handleChange} handleDelete={this.handleDelete} handleDateChange={this.handleDateChange} handleEmployedFlip={this.handleEmployedFlip}/>
         <Button sx={{width: "100%"}} onClick={this.handleClick} variant="contained">Add Job</Button>
       </div>
     )
