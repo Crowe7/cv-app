@@ -43,6 +43,16 @@ export default class jobExp extends Component {
     }
   }
 
+  handleDateChange = (ID:string, newValue:Date|null, dateName: string) => {
+    const CurrentInfoCount = [...this.state.InfoCount]
+    for(let i = 0; i < CurrentInfoCount.length; i++) {
+      if(ID === CurrentInfoCount[i].ID) {
+        CurrentInfoCount[i] = {...CurrentInfoCount[i], [dateName]: newValue};
+        this.setState({InfoCount: CurrentInfoCount});
+      }
+    }
+  }
+
   handleDelete = (ID:string) => {
     const CurrentInfoCount = [...this.state.InfoCount]
     for(let i = 0; i < CurrentInfoCount.length; i++) {
@@ -72,7 +82,7 @@ export default class jobExp extends Component {
   render() {
     return (
       <div>
-        <JobExpBoxes InfoCount={this.state.InfoCount} handleChange={this.handleChange} handleDelete={this.handleDelete}/>
+        <JobExpBoxes InfoCount={this.state.InfoCount} handleChange={this.handleChange} handleDelete={this.handleDelete} handleDateChange={this.handleDateChange}/>
         <Button sx={{width: "100%"}} onClick={this.handleClick} variant="contained">Add Job</Button>
       </div>
     )

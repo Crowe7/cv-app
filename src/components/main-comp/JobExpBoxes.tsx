@@ -12,6 +12,7 @@ type MyProps = {
   InfoCount: JobInfo[],
   handleChange?: Function
   handleDelete?: Function
+  handleDateChange?: Function
 }
 
 //this.props.handleChange?.(info.ID) is called optional chaining
@@ -19,7 +20,7 @@ export default class JobExpBoxes extends Component<MyProps> {
 
 //https://stackoverflow.com/questions/37387351/reactjs-warning-setstate-cannot-update-during-an-existing-state-transiti
   render() {
-    const {InfoCount, handleChange, handleDelete} = this.props
+    const {InfoCount, handleChange, handleDelete, handleDateChange} = this.props
     return (
       <div>
           {InfoCount.map((info) => {
@@ -34,16 +35,24 @@ export default class JobExpBoxes extends Component<MyProps> {
                           <Box>
                             <LocalizationProvider dateAdapter={AdapterDateFns}>
                               <DatePicker
-                                value = {info.StartingDate}
+                                value={info.StartingDate}
                                 label="Starting Date"
                                 onChange={(newValue: Date|null) => {
-                                  info.StartingDate = newValue
+                                  handleDateChange?.(info.ID, newValue, "StartingDate")
+                                }}
+                                renderInput={(params) => <TextField {...params} />}
+                              />
+                              <DatePicker
+                                value={info.EndingDate}
+                                label="Ending Date"
+                                disabled={info.Exployed}
+                                onChange={(newValue: Date|null) => {
+                                  handleDateChange?.(info.ID, newValue, "EndingDate")
                                 }}
                                 renderInput={(params) => <TextField {...params} />}
                               />
                             </LocalizationProvider>
                           </Box>
-
                     </Box>;
             })
           }
