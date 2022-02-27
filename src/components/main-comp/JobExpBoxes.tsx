@@ -64,6 +64,8 @@ export default class JobExpBoxes extends Component<MyProps> {
                               <FormControlLabel control={<Switch checked={info.Employed} onChange={handleEmployedFlip(info.ID)} />} label="Employed" />
                             </FormGroup>
                           </Box>
+
+                          <TextField onChange={handleChange?.(info.ID)} multiline maxRows={3} name="JobInfo" id="outlined-basic" label="Job Info" variant="outlined" />
                     </Box>;
             })
           }
