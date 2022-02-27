@@ -31,24 +31,26 @@ export default class JobExpBoxes extends Component<MyProps> {
     return (
       <div>
           {InfoCount.map((info) => {
-              return <Box sx={{display: "flex", flexDirection: "column", border: 1, width: "600px", height: "400px", marginTop: "10px"}} key={info.ID}>
+              return <Box sx={{display: "flex", flexDirection: "column", borderBottom: 3, borderColor: "#94D2BD", width: "700px", height: "400px", marginTop: "10px", backgroundColor: "white"}} key={info.ID}>
                           <Box sx={{display: "flex", height: "40px", width: "100%", justifyContent: "end"}}>
                             <IconButton aria-label="delete" onClick={() => handleDelete?.(info.ID)}>
                               <DeleteIcon />
                             </IconButton>
                           </Box>
-                          <TextField sx={{width: "35%", marginLeft: "25px", marginTop: "20px"}} onChange={handleChange?.(info.ID)} name="Title" id="outlined-basic" label="Title" variant="outlined" />
-                          <TextField sx={{width: "35%", marginLeft: "25px", marginTop: "20px"}} onChange={handleChange?.(info.ID)} name="Employer" id="outlined-basic" label="Employer" variant="outlined" />
-                          <Box>
+                          <TextField sx={{width: "55%", marginLeft: "25px", marginTop: "20px"}} onChange={handleChange?.(info.ID)} name="Title" id="outlined-basic" label="Title" variant="outlined" />
+                          <TextField sx={{width: "55%", marginLeft: "25px", marginTop: "20px"}} onChange={handleChange?.(info.ID)} name="Employer" id="outlined-basic" label="Employer" variant="outlined" />
+                          <Box sx={{display: "flex", marginLeft: "25px", marginTop: "20px" }}>
                             <LocalizationProvider dateAdapter={AdapterDateFns}>
-                              <DatePicker
-                                value={info.StartingDate}
-                                label="Starting Date"
-                                onChange={(newValue: Date|null) => {
-                                  handleDateChange?.(info.ID, newValue, "StartingDate")
-                                }}
-                                renderInput={(params) => <TextField {...params} />}
-                              />
+                              <Box sx={{paddingRight: "20px"}}>
+                                <DatePicker
+                                  value={info.StartingDate}
+                                  label="Starting Date"
+                                  onChange={(newValue: Date|null) => {
+                                    handleDateChange?.(info.ID, newValue, "StartingDate")
+                                  }}
+                                  renderInput={(params) => <TextField {...params} />}
+                                />
+                              </Box>
                               <DatePicker
                                 value={info.EndingDate}
                                 label="Ending Date"
@@ -61,11 +63,11 @@ export default class JobExpBoxes extends Component<MyProps> {
                             </LocalizationProvider>
 
                             <FormGroup>
-                              <FormControlLabel control={<Switch checked={info.Employed} onChange={handleEmployedFlip(info.ID)} />} label="Employed" />
+                              <FormControlLabel sx={{marginLeft: "10px"}} control={<Switch checked={info.Employed} onChange={handleEmployedFlip(info.ID)} />} label="Ongoing" />
                             </FormGroup>
                           </Box>
 
-                          <TextField onChange={handleChange?.(info.ID)} multiline maxRows={3} name="JobInfo" id="outlined-basic" label="Job Info" variant="outlined" />
+                          <TextField sx={{margin: "25px"}} onChange={handleChange?.(info.ID)} multiline maxRows={3} name="JobInfo" id="outlined-basic" label="Job Info" variant="outlined" />
                     </Box>;
             })
           }

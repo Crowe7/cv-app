@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { v4 as uuidv4 } from 'uuid';
 import Button from '@mui/material/Button';
 import JobExpBoxes from "./JobExpBoxes";
+import Box from '@mui/material/Box';
 
 export interface JobInfo {
   Title: string
@@ -92,10 +93,15 @@ export default class jobExp extends Component {
 
   render() {
     return (
-      <div>
-        <JobExpBoxes InfoCount={this.state.InfoCount} handleChange={this.handleChange} handleDelete={this.handleDelete} handleDateChange={this.handleDateChange} handleEmployedFlip={this.handleEmployedFlip}/>
-        <Button sx={{width: "100%"}} onClick={this.handleClick} variant="contained">Add Job</Button>
-      </div>
+      <Box >
+        <Box sx={{padding: "10px", borderBottom: 3, borderColor: "#94D2BD"}}>
+          <h1>Add Job Experience</h1>
+        </Box>
+        <div>
+          <JobExpBoxes InfoCount={this.state.InfoCount} handleChange={this.handleChange} handleDelete={this.handleDelete} handleDateChange={this.handleDateChange} handleEmployedFlip={this.handleEmployedFlip}/>
+          <Button sx={{width: "700px", marginTop: "2px"}} onClick={this.handleClick} variant="contained">Add Job</Button>
+        </div>
+      </Box>
     )
   }
 }

@@ -26,7 +26,7 @@ export default class Header extends Component<MyState> {
   }
   render() {
     return (
-      <Box sx={{display: "flex", position: "sticky", top: 0, width: "600px", justifyContent: "center", marginLeft: "20px", paddingBottom: "50px", paddingTop: "15px"}}>
+      <Box sx={{display: "flex", position: "sticky", top: 0, width: "100%", justifyContent: "center", marginLeft: "20px", paddingBottom: "20px", paddingTop: "15px", color: "white", zIndex: 9001, backgroundColor: "#005F73"}}>
         <Box sx={{position: "absolute"}}>
           <h1>CV application</h1>
         </Box>
