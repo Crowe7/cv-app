@@ -1,37 +1,28 @@
-import React, { Component } from 'react'
+import React, { Component, ChangeEventHandler } from 'react'
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import Box from '@mui/material/Box'
 
-
-type MyState = {
-  checked?: boolean
-  mode?: string
+type MyProps = {
+  checked: boolean | undefined,
+  mode: string | undefined
+  handleChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
 }
 
-export default class Header extends Component<MyState> {
-  state: MyState = {
-    checked: true,
-    mode: "Edit"
-  }
 
-  handleChange = (e:React.ChangeEvent<HTMLInputElement>) => { // this is probably very wrong and very bad
-    if(this.state.checked === false) {
-      this.setState({checked: true, mode: "Edit"})
-    }
-    else if(this.state.checked === true) {
-      this.setState({checked: false, mode: "Preview"})
-    }
-  }
+export default class Header extends Component<MyProps> {
+
+
   render() {
+    const {checked, mode, handleChange} = this.props
     return (
       <Box sx={{display: "flex", position: "sticky", top: 0, width: "100%", justifyContent: "center", marginLeft: "20px", paddingBottom: "20px", paddingTop: "15px", color: "white", zIndex: 9001, backgroundColor: "#005F73"}}>
         <Box sx={{position: "absolute"}}>
           <h1>CV application</h1>
         </Box>
         <FormGroup>
-          <FormControlLabel sx={{paddingLeft: "400px"}} control={<Switch checked={this.state.checked} onChange={this.handleChange} />} label={`${this.state.mode}`} />
+          <FormControlLabel sx={{paddingLeft: "400px"}} control={<Switch checked={checked} onChange={handleChange} />} label={`${mode}`} />
         </FormGroup>
       </Box>
     )
