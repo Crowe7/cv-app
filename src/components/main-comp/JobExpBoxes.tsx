@@ -37,8 +37,8 @@ export default class JobExpBoxes extends Component<MyProps> {
                               <DeleteIcon />
                             </IconButton>
                           </Box>
-                          <TextField sx={{width: "55%", marginLeft: "25px", marginTop: "20px"}} onChange={handleChange?.(info.ID)} name="Title" id="outlined-basic" label="Title" variant="outlined" />
-                          <TextField sx={{width: "55%", marginLeft: "25px", marginTop: "20px"}} onChange={handleChange?.(info.ID)} name="Employer" id="outlined-basic" label="Employer" variant="outlined" />
+                          <TextField sx={{width: "55%", marginLeft: "25px", marginTop: "20px"}} value={info.Title} onChange={handleChange?.(info.ID)} name="Title" id="outlined-basic" label="Title" variant="outlined" />
+                          <TextField sx={{width: "55%", marginLeft: "25px", marginTop: "20px"}} value={info.Employer} onChange={handleChange?.(info.ID)} name="Employer" id="outlined-basic" label="Employer" variant="outlined" />
                           <Box sx={{display: "flex", marginLeft: "25px", marginTop: "20px" }}>
                             <LocalizationProvider dateAdapter={AdapterDateFns}>
                               <Box sx={{paddingRight: "20px"}}>
@@ -67,7 +67,7 @@ export default class JobExpBoxes extends Component<MyProps> {
                             </FormGroup>
                           </Box>
 
-                          <TextField sx={{margin: "25px"}} onChange={handleChange?.(info.ID)} multiline maxRows={3} name="JobInfo" id="outlined-basic" label="Job Info" variant="outlined" />
+                          <TextField sx={{margin: "25px"}} value={info.JobInfo} onChange={handleChange?.(info.ID)} multiline maxRows={3} name="JobInfo" id="outlined-basic" label="Job Info" variant="outlined" />
                     </Box>;
             })
           }

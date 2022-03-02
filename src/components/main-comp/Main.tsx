@@ -98,18 +98,26 @@ jobHandleClick = () => {
 
   render() {
 
-    return (
-      <div className='show'>
-        <GeneralInfo/>
-        <JobExp
-         InfoCount={this.state.JobInfoCount}
-         handleChange={this.jobHandleChange}
-         handleDateChange={this.jobHandleDateChange}
-         handleEmployedFlip={this.handleEmployedFlip}
-         handleDelete={this.jobHandleDelete}
-         handleClick={this.jobHandleClick}
-         />
+    let displayMode = () => {
+      if(this.props.Mode) {
+        return         <div className='show'>
+          <GeneralInfo/>
+          <JobExp
+          InfoCount={this.state.JobInfoCount}
+          handleChange={this.jobHandleChange}
+          handleDateChange={this.jobHandleDateChange}
+          handleEmployedFlip={this.handleEmployedFlip}
+          handleDelete={this.jobHandleDelete}
+          handleClick={this.jobHandleClick}
+          />
       </div>
+      } else {
+        return <div>Placeholder for preview</div>
+      }
+    }
+
+    return (
+      displayMode()
     )
   }
 }
