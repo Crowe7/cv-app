@@ -1,8 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component, ChangeEvent } from 'react'
 import JobExp from './JobExp'
 import GeneralInfo from './GeneralInfo'
 import { v4 as uuidv4 } from 'uuid';
 // might have to create a state here that renders the main exp if on true and cv if on false, and pass that to the header so the switch is a child oh main still
+export interface GeneralInfoState {
+  Name: string,
+  PhoneNumber: string,
+  Email: string,
+
+}
 
 export interface JobInfo {
   Title: string
@@ -17,6 +23,7 @@ export interface JobInfo {
 type MyState = {
   JobInfoState: JobInfo
   JobInfoCount: JobInfo[]
+  GeneralInfoState: GeneralInfoState
 }
 
 type MyProps = {
@@ -35,7 +42,19 @@ export default class Main extends Component<MyProps> {
       ID: uuidv4()
     },
     JobInfoCount: [],
+
+    GeneralInfoState: {
+      Name: '',
+      PhoneNumber: '',
+      Email: ''
+    }
   }
+
+  /*----------------GENERAL-----------------*/
+generalHandleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  let genInfo = {...this.state.GeneralInfoState, [e.target.name]: e.target.value} 
+  this.setState({GeneralInfoState: genInfo})
+}
 
   /*----------------JOB INFO-----------------*/
 
@@ -101,7 +120,7 @@ jobHandleClick = () => {
     let displayMode = () => {
       if(this.props.Mode) {
         return         <div className='show'>
-          <GeneralInfo/>
+          <GeneralInfo handleChange={this.generalHandleChange} Info={this.state.GeneralInfoState}/>
           <JobExp
           InfoCount={this.state.JobInfoCount}
           handleChange={this.jobHandleChange}
