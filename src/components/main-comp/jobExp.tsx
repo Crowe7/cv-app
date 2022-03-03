@@ -25,7 +25,7 @@ export default class jobExp extends Component<MyProps> {
         </Box>
         <div>
           <JobExpBoxes InfoCount={InfoCount} handleChange={handleChange} handleDelete={handleDelete} handleDateChange={handleDateChange} handleEmployedFlip={handleEmployedFlip}/>
-          <Button sx={{width: "700px", marginTop: "2px"}} onClick={handleClick} variant="contained">Add Job</Button>
+          <Button sx={{width: "700px", marginTop: "10px", marginBottom: '10px'}} onClick={handleClick} variant="contained">Add Job</Button>
         </div>
       </Box>
     )

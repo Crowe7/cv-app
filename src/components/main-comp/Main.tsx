@@ -193,7 +193,7 @@ jobHandleClick = () => {
     for(let i = 0; i < CurrentInfoCount.length; i++) {
       if(ID === CurrentInfoCount[i].ID) {
         CurrentInfoCount.splice(i, 1);
-        this.setState({EducaitonInfoCount: CurrentInfoCount})
+        this.setState({EducationInfoCount: CurrentInfoCount})
       }
     }
   }
@@ -219,7 +219,7 @@ jobHandleClick = () => {
           handleChange={this.educationHandleChange}
           handleDateChange={this.educationHandleDateChange}
           handleEducationFlip={this.handleStudentFlip}
-          handleDelete={this.jobHandleDelete}
+          handleDelete={this.educationHandleDelete}
           />
       </div>
       } else {
