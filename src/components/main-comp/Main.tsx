@@ -154,8 +154,48 @@ jobHandleClick = () => {
         Student: false,
         ID: uuidv4()
       }
-
     })
+  }
+
+  educationHandleChange = (ID:string) => (e:any) => {
+    const CurrentInfoCount = [...this.state.EducationInfoCount]
+    for(let i = 0; i < CurrentInfoCount.length; i++) {
+      if(ID === CurrentInfoCount[i].ID) {
+        //these are computed propery names [e.targer.name]
+        CurrentInfoCount[i] = {...CurrentInfoCount[i], [e.target.name]: e.target.value};
+        this.setState({EducationInfoCount: CurrentInfoCount});
+      }
+    }
+  }
+
+  educationHandleDateChange = (ID:string, newValue:Date|null, dateName: string) => {
+    const CurrentInfoCount = [...this.state.EducationInfoCount]
+    for(let i = 0; i < CurrentInfoCount.length; i++) {
+      if(ID === CurrentInfoCount[i].ID) {
+        CurrentInfoCount[i] = {...CurrentInfoCount[i], [dateName]: newValue};
+        this.setState({EducationInfoCount: CurrentInfoCount});
+      }
+    }
+  }
+
+  handleStudentFlip = (ID:string) => (e:any) => {
+    const CurrentInfoCount = [...this.state.EducationInfoCount]
+    for(let i = 0; i < CurrentInfoCount.length; i++) {
+      if(ID === CurrentInfoCount[i].ID) {
+        CurrentInfoCount[i] = {...CurrentInfoCount[i], Student: e.target.checked};
+        this.setState({EducationInfoCount: CurrentInfoCount});
+      }
+    }
+  }
+
+  educationHandleDelete = (ID:string) => {
+    const CurrentInfoCount = [...this.state.EducationInfoCount]
+    for(let i = 0; i < CurrentInfoCount.length; i++) {
+      if(ID === CurrentInfoCount[i].ID) {
+        CurrentInfoCount.splice(i, 1);
+        this.setState({EducaitonInfoCount: CurrentInfoCount})
+      }
+    }
   }
 
 
@@ -176,6 +216,10 @@ jobHandleClick = () => {
           <EducationExp
           InfoCount={this.state.EducationInfoCount}
           handleClick={this.educationHandleClick}
+          handleChange={this.educationHandleChange}
+          handleDateChange={this.educationHandleDateChange}
+          handleEducationFlip={this.handleStudentFlip}
+          handleDelete={this.jobHandleDelete}
           />
       </div>
       } else {
