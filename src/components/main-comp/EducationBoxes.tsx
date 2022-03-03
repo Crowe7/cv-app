@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {EducationInfo} from "./EducationExp"
+import {EducationInfo} from "./Main"
 
 
 type MyProps = {
@@ -11,10 +11,16 @@ type MyProps = {
   }
 
 
-export default class EducationBoxes extends Component {
+export default class EducationBoxes extends Component<MyProps> {
   render() {
+    const {InfoCount} = this.props
     return (
-      <div>EducationBoxes</div>
+      <div>
+        {InfoCount.map((info) => {
+            return <div key={info.ID}> chungus </div>
+          })
+        }
+      </div>
     )
   }
 }

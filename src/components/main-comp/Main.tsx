@@ -1,5 +1,6 @@
 import React, { Component, ChangeEvent } from 'react'
 import JobExp from './JobExp'
+import EducationExp from './EducationExp';
 import GeneralInfo from './GeneralInfo'
 import { v4 as uuidv4 } from 'uuid';
 // might have to create a state here that renders the main exp if on true and cv if on false, and pass that to the header so the switch is a child oh main still
@@ -20,10 +21,22 @@ export interface JobInfo {
   ID: string
 }
 
+export interface EducationInfo {
+  School: string,
+  Major: string,
+  Degree: string,
+  EducationStart: Date| null,
+  EducationEnd: Date| null,
+  Student: boolean,
+  ID: string
+}
+
 type MyState = {
   JobInfoState: JobInfo
   JobInfoCount: JobInfo[]
   GeneralInfoState: GeneralInfoState
+  EducationInfoState: EducationInfo,
+  EducationInfoCount: EducationInfo[]
 }
 
 type MyProps = {
@@ -47,7 +60,19 @@ export default class Main extends Component<MyProps> {
       Name: '',
       PhoneNumber: '',
       Email: ''
-    }
+    },
+
+    EducationInfoState: {
+      School: '',
+      Major: '',
+      Degree: '',
+      EducationStart: new Date(),
+      EducationEnd: new Date(),
+      Student: false,
+      ID: uuidv4()
+    },
+    EducationInfoCount: []
+
   }
 
   /*----------------GENERAL-----------------*/
@@ -115,6 +140,25 @@ jobHandleClick = () => {
   });
 }
 
+  /*----------------Edu Info-----------------*/
+
+  educationHandleClick = () => {
+    this.setState({
+      EducationInfoCount: this.state.EducationInfoCount.concat(this.state.EducationInfoState),
+      EducationInfoState: {
+        School: '',
+        Major: '',
+        Degree: '',
+        EducationStart: new Date(),
+        EducationEnd: new Date(),
+        Student: false,
+        ID: uuidv4()
+      }
+
+    })
+  }
+
+
   render() {
 
     let displayMode = () => {
@@ -128,6 +172,10 @@ jobHandleClick = () => {
           handleEmployedFlip={this.handleEmployedFlip}
           handleDelete={this.jobHandleDelete}
           handleClick={this.jobHandleClick}
+          />
+          <EducationExp
+          InfoCount={this.state.EducationInfoCount}
+          handleClick={this.educationHandleClick}
           />
       </div>
       } else {

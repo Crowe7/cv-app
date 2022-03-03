@@ -1,23 +1,31 @@
 import React, { Component } from 'react'
-import { v4 as uuidv4 } from 'uuid';
+import {EducationInfo} from './Main'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import EducationBoxes from './EducationBoxes'
 
-export interface EducationInfo {
-    School: string,
-    Major: string,
-    Degree: string,
-    EducationStart: Date| null,
-    EducationEnd: Date| null,
-}
-
-type MyState = {
-    Info: EducationInfo,
+type MyProps = {
     InfoCount: EducationInfo[]
-}
+    handleChange?: Function,
+    handleDateChange?: Function,
+    handleEducationFlip?: Function,
+    handleDelete?: Function,
+    handleClick?: any, // :(
+  }
 
-export default class EducationExp extends Component {
+export default class EducationExp extends Component<MyProps> {
   render() {
+    const {InfoCount, handleClick} = this.props
     return (
-      <div>EducationExp</div>
+        <Box >
+            <Box sx={{padding: "10px", borderBottom: 3, borderColor: "#94D2BD"}}>
+                <h1>Add Education</h1>
+            </Box>
+            <div>
+                <EducationBoxes InfoCount={InfoCount} />
+                <Button sx={{width: "700px", marginTop: "2px"}} onClick={handleClick} variant="contained">Add Education</Button>
+            </div>
+        </Box>
     )
   }
 }
