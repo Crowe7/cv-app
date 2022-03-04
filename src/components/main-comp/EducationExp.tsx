@@ -5,7 +5,7 @@ import Button from '@mui/material/Button'
 import EducationBoxes from './EducationBoxes'
 
 type MyProps = {
-    InfoCount: EducationInfo[]
+    InfoCount: EducationInfo[],
     handleChange?: Function,
     handleDateChange?: Function,
     handleEducationFlip?: Function,

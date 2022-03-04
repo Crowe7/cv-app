@@ -2,7 +2,8 @@ import React, { Component, ChangeEvent } from 'react'
 import JobExp from './JobExp'
 import EducationExp from './EducationExp';
 import GeneralInfo from './GeneralInfo'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
+import CvPreview from './CvPreview';
 // might have to create a state here that renders the main exp if on true and cv if on false, and pass that to the header so the switch is a child oh main still
 export interface GeneralInfoState {
   Name: string,
@@ -223,7 +224,7 @@ jobHandleClick = () => {
           />
       </div>
       } else {
-        return <div>Placeholder for preview</div>
+        return <CvPreview JobInfo={this.state.JobInfoCount} EducationInfo={this.state.EducationInfoCount} GeneralInfo={this.state.GeneralInfoState}/>
       }
     }
 
