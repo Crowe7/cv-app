@@ -48,7 +48,25 @@ export default class CvPreview extends Component<MyProps> {
         <Box sx={{padding: "10px", borderBottom: 3, borderColor: 'black', width: "80%"}}>
           <h1>Job Experience</h1>
         </Box>
-        <Box sx={{padding: "10px"}}>
+        <Box sx={{padding: "10px", borderBottom: 3, borderColor: 'black'}}>
+          {JobInfo.map((info) => {
+            let setStudentText:null|String = null;
+            let formattedEndDate:String = ''
+            let formattedStartDate:String = format(info.EndingDate, "MM-dd-yyyy")
+              if(info.Employed === true) {
+                setStudentText = "Ongoing"
+              } else {
+                formattedEndDate = format(info.StartingDate, "MM-dd-yyyy")
+                setStudentText = `${formattedEndDate}`
+              }
+            return <Box sx={{width: "80%", marginBottom: '20px'}} key={info.ID}>
+              <h2>Job Title: {`${info.Title}`}</h2>
+              <h2>Employer: {`${info.Employer}`}</h2>
+              <h2>Start: {`${formattedStartDate}`} To: {`${setStudentText}`}</h2>
+              <Box sx={{marginBottom: "5px", overflowWrap: "break-word", width: "120%"}}><h2>Additional Info:</h2><h3>{`${info.JobInfo}`}</h3></Box>
+            </Box>
+          }
+          )}
         </Box>
       </Box>
     )
