@@ -15,8 +15,8 @@ export interface GeneralInfoState {
 export interface JobInfo {
   Title: string
   Employer: string
-  StartingDate: Date|null
-  EndingDate: Date|null
+  StartingDate: Date
+  EndingDate: Date
   Employed: boolean
   JobInfo: string
   ID: string
@@ -26,8 +26,8 @@ export interface EducationInfo {
   School: string,
   Major: string,
   Degree: string,
-  EducationStart: Date| null,
-  EducationEnd: Date| null,
+  EducationStart: Date,
+  EducationEnd: Date,
   Student: boolean,
   ID: string
 }
