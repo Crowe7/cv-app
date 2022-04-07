@@ -4,7 +4,7 @@ Mock CV maker made with React Class components
 > [Live Demo](https://crowe7.github.io/cv-app/)
 ## Screenshots 
 #### Homepage
-![Homepage](src/screenshots/Homepage.png
+![Homepage](src/screenshots/Homepage.png)
 
 
 ## Built with
